@@ -2,7 +2,7 @@
 #include<math.h>//引入数学符号绝对值
 #include<graphics.h>//载入图片和音乐
 
-int flag = 0;
+int flag = 0;//记录回合数
 int ChessPlace[25][25] = { 0 };//记录棋子数组
 
 //初始化游戏：
@@ -116,7 +116,7 @@ void playGame() {
 }
 
 int main() {
-	mciSendString("play bgm2.mp3", 0, 0, 0);
+	mciSendString("play bgm2.mp3", 0, 0, 0);载入哈基米音乐
 
 	intGame();
 	playGame();
@@ -124,3 +124,4 @@ int main() {
 	return 0;
 
 }
+
