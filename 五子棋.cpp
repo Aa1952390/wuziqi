@@ -1,32 +1,32 @@
 #include<stdio.h>
-#include<math.h>//ÒıÈëÊıÑ§·ûºÅ¾ø¶ÔÖµ
-#include<graphics.h>//ÔØÈëÍ¼Æ¬ºÍÒôÀÖ
+#include<math.h>//å¼•å…¥æ•°å­¦ç¬¦å·ç»å¯¹å€¼
+#include<graphics.h>//è½½å…¥å›¾ç‰‡å’ŒéŸ³ä¹
 
 int flag = 0;
-int ChessPlace[25][25] = { 0 };//¼ÇÂ¼Æå×ÓÊı×é
+int ChessPlace[25][25] = { 0 };//è®°å½•æ£‹å­æ•°ç»„
 
-//³õÊ¼»¯ÓÎÏ·£º
+//åˆå§‹åŒ–æ¸¸æˆï¼š
 void initGame() {
-	initgraph(474, 711);//´´½¨»­Ãæ
-	loadimage(NULL, "bg.jpg");//ÔØÈë±³¾°Í¼Æ¬
-	//»æÖÆÆåÅÌ£¬ÒÔ450*450ÒÔ18Îª¼ä¸ô£¬ÆåÅÌ25*25
+	initgraph(474, 711);//åˆ›å»ºç”»é¢
+	loadimage(NULL, "bg.jpg");//è½½å…¥èƒŒæ™¯å›¾ç‰‡
+	//ç»˜åˆ¶æ£‹ç›˜ï¼Œä»¥450*450ä»¥18ä¸ºé—´éš”ï¼Œæ£‹ç›˜25*25
 	setlinecolor(BLACK);
 	for (int i = 1; i < 25; i++) {
-		line(0, 18 * i, 450, 18 * i);//ºáÏß
-		line(18 * i, 0, 18 * i, 450);//ÊúÏß
+		line(0, 18 * i, 450, 18 * i);//æ¨ªçº¿
+		line(18 * i, 0, 18 * i, 450);//ç«–çº¿
 	}
-	setlinestyle(PS_SOLID, 2);//¼Ó´Ö±ß½çÏß
-	line(450, 0, 450, 450);//»æÖÆ±ß½çÏß
-	setbkmode(0);//ÉèÖÃ±³¾°Í¼ÎªÍ¸Ã÷
-	settextcolor(BLACK);//ÉèÖÃ×ÖÌåÑÕÉ«,
-	outtext(460, 250, "Íæ¼Ò1:ºÚÆå");
-	outtext(460, 500, "Íæ¼Ò2:°×Æå");
+	setlinestyle(PS_SOLID, 2);//åŠ ç²—è¾¹ç•Œçº¿
+	line(450, 0, 450, 450);//ç»˜åˆ¶è¾¹ç•Œçº¿
+	setbkmode(0);//è®¾ç½®èƒŒæ™¯å›¾ä¸ºé€æ˜
+	settextcolor(BLACK);//è®¾ç½®å­—ä½“é¢œè‰²,
+	outtext(460, 250, "ç©å®¶1:é»‘æ£‹");
+	outtext(460, 500, "ç©å®¶2:ç™½æ£‹");
 	return 0;
 }
-//ÓÎÏ·µÄÅĞ¶Ï
+//æ¸¸æˆçš„åˆ¤æ–­
 int judge(int MapX,int MapY) {
 	int temp = 2 - flag % 2;//
-	//ÅĞ¶¨ÊúÖ±·½Ïò
+	//åˆ¤å®šç«–ç›´æ–¹å‘
 	for (int i = MapX - 4, j = MapY; i <= MapX; i++) {
 		if (i >= 1 && i < 21 && temp == ChessPlace[i][j] && temp == ChessPlace[i + 1][j] &&
 			temp == ChessPlace[i + 2][j] && temp == ChessPlace[i + 3][j]
@@ -34,7 +34,7 @@ int judge(int MapX,int MapY) {
 			return 1;
 		}
 	}
-	//ÅĞ¶¨ºáµÄ·½Ïò
+	//åˆ¤å®šæ¨ªçš„æ–¹å‘
 	for (int i = MapX, j = MapY - 4; j <= MapY; j++) {
 		if (i >= 1 && i < 21 && temp == ChessPlace[i][j] && temp == ChessPlace[i][j+1] &&
 			temp == ChessPlace[i][j+2] && temp == ChessPlace[i][j+3]
@@ -42,7 +42,7 @@ int judge(int MapX,int MapY) {
 			return 1;
 		}
 	}
-	//ÅĞ¶¨×óĞ±Ïß·½Ïò
+	//åˆ¤å®šå·¦æ–œçº¿æ–¹å‘
 	for (int i = MapX-4, j = MapY - 4; i<=MapX,j <= MapY; i++,j++) {
 		if (i >= 1 && i < 21 && temp == ChessPlace[i][j] && temp == ChessPlace[i+1][j + 1] &&
 			temp == ChessPlace[i+2][j + 2] && temp == ChessPlace[i+3][j + 3]
@@ -50,7 +50,7 @@ int judge(int MapX,int MapY) {
 			return 1;
 		}
 	}
-	//ÅĞ¶¨ÓÒĞ±Ïß·½Ïò
+	//åˆ¤å®šå³æ–œçº¿æ–¹å‘
 	for (int i = MapX-4, j = MapY + 4; i<=MapX,j >= MapY;i++ j--) {
 		if (i >= 1 && i < 21 && temp == ChessPlace[i][j] && temp == ChessPlace[i+1][j - 1] &&
 			temp == ChessPlace[i+2][j - 2] && temp == ChessPlace[i+3][j - 3]
@@ -64,51 +64,51 @@ int judge(int MapX,int MapY) {
 	
 }
 
-//¿ªÊ¼ÓÎÏ·
+//å¼€å§‹æ¸¸æˆ
 void playGame() {
-	int ChessX = 0, ChessY = 0;//¼ÇÂ¼Æå×ÓµÄ×ø±ê
-	int MapX = 0, MapY = 0;//¼ÇÂ¼ÆåÅÌµØÍ¼ÏÂ±ê
-	MOUSEMSG Msg;//¶¨ÒåÒ»¸ö±äÁ¿£¨´æ´¢¿â£©´æ´¢Êó±êĞÅÏ¢
+	int ChessX = 0, ChessY = 0;//è®°å½•æ£‹å­çš„åæ ‡
+	int MapX = 0, MapY = 0;//è®°å½•æ£‹ç›˜åœ°å›¾ä¸‹æ ‡
+	MOUSEMSG Msg;//å®šä¹‰ä¸€ä¸ªå˜é‡ï¼ˆå­˜å‚¨åº“ï¼‰å­˜å‚¨é¼ æ ‡ä¿¡æ¯
 
-	HWND hwnd = GetHWnd();//»ñÈ¡´°¿Ú£¬ÔÚ±íÃæ
+	HWND hwnd = GetHWnd();//è·å–çª—å£ï¼Œåœ¨è¡¨é¢
 
 	while (1) {
-		Msg = GetMouseMsg();//»ñÈ¡Êó±êĞÅÏ¢
-		//ÓÅ»¯Êó±êÎ»ÖÃÊ¹Æä±»ÈÏ¶¨ÔÚÏßÌõ½»»ã´¦
+		Msg = GetMouseMsg();//è·å–é¼ æ ‡ä¿¡æ¯
+		//ä¼˜åŒ–é¼ æ ‡ä½ç½®ä½¿å…¶è¢«è®¤å®šåœ¨çº¿æ¡äº¤æ±‡å¤„
 		for (int i = 1; i < 25; i++) {
 			for (int j = 1; j < 25; j++) {
 				if (abs(Msg.x - j * 18) <= 9 && abs(Msg.y - i * 18) <= 9) {
-					ChessX = j * 18;//¼ÇÂ¼x×ø±ê
-					ChessY = i * 18;//¼ÇÂ¼y×ø±ê
+					ChessX = j * 18;//è®°å½•xåæ ‡
+					ChessY = i * 18;//è®°å½•yåæ ‡
 					MapX = i;
 					MapY = j;
 				}
 			}
 		}if (Msg.uMsg == WM_LBUTTONDOWN) {
-		//Èç¹ûÊó±ê×ó¼ü°´ÏÂ
+		//å¦‚æœé¼ æ ‡å·¦é”®æŒ‰ä¸‹
 			if (ChessPlace[MapX][MapY] != 0) {
-				MessageBox(hwnd, "ÕâÀïÓĞÆå×ÓÁË£¡ÇëÖØĞÂÑ¡Ôñ¡£", "Îå×ÓÆå", MB_OK);
+				MessageBox(hwnd, "è¿™é‡Œæœ‰æ£‹å­äº†ï¼è¯·é‡æ–°é€‰æ‹©ã€‚", "äº”å­æ£‹", MB_OK);
 				continue;
 			}
 			if (flag % 2 == 0) {
-				setfillcolor(BLACK);//ÉèÖÃÔ²µÄÑÕÉ«
+				setfillcolor(BLACK);//è®¾ç½®åœ†çš„é¢œè‰²
 				solidcircle(ChessX, ChessY, 8);
-				ChessPlace[MapX][MapY] = 1;//ºÚÆåÎª1
+				ChessPlace[MapX][MapY] = 1;//é»‘æ£‹ä¸º1
 			}
 			else {
-				setfillcolor(WHILE);//ÉèÖÃÔ²µÄÑÕÉ«
+				setfillcolor(WHILE);//è®¾ç½®åœ†çš„é¢œè‰²
 				solidcircle(ChessX, ChessY, 8);
-				ChessPlace[MapX][MapY] = 2;//°×ÆåÎª2
+				ChessPlace[MapX][MapY] = 2;//ç™½æ£‹ä¸º2
 			}
-			flag++;//¸ü»»ÏÂÆåÕß
+			flag++;//æ›´æ¢ä¸‹æ£‹è€…
 		}
 		if (judge(MapX, MapY)) {
 			if (1 == flag % 2) {
-				MessageBox(hwnd, "Íæ¼Ò1;ºÚÆådictory", "Game Over", MB_OK);
+				MessageBox(hwnd, "ç©å®¶1;é»‘æ£‹dictory", "Game Over", MB_OK);
 				return;
 			}
 			else {
-				MessageBox(hwnd, "Íæ¼Ò2;°×Æådictory", "Game Over", MB_OK);
+				MessageBox(hwnd, "ç©å®¶2;ç™½æ£‹dictory", "Game Over", MB_OK);
 				return;
 			}
 		}
@@ -116,10 +116,11 @@ void playGame() {
 }
 
 int main() {
-	mciSendString("play mb.mp3", 0, 0, 0);
+	mciSendString("play bgm2.mp3", 0, 0, 0);
 
 	intGame();
 	playGame();
 	closegraph();
 	return 0;
+
 }
