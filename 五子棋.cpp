@@ -116,7 +116,7 @@ void playGame() {
 }
 
 int main() {
-	mciSendString("play bgm2.mp3", 0, 0, 0);载入哈基米音乐
+	mciSendString("play bgm2.mp3", 0, 0, 0);//载入哈基米音乐
 
 	intGame();
 	playGame();
@@ -124,4 +124,5 @@ int main() {
 	return 0;
 
 }
+
 
